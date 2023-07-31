@@ -1,0 +1,13 @@
+---------------SQL Assignment---------------------
+
+1) SELECT CustomerId , FirstName , LastName, City from customers where FirstName like 'N%' or City ='Pune';
+2) SELECT TrackId, Name, Composer, UnitPrice from tracks where UnitPrice BETWEEN 0 and 1 and Composer not like '%T%';
+
+3) SELECT InvoiceDate, sum(Total) AS SUM, avg(Total) AS Average FROM Invoices WHERE InvoiceDate BETWEEN "2020-06-01 00:00:00" AND "2020-06-30 11:59:59" GROUP BY InvoiceDate;
+
+4) SELECT TrackId,count(TrackId) as Total from invoice_items group by TrackId order by count(TrackId) DESC;
+
+5) SELECT DISTINCT a.ArtistID, a.Name AS ArtistName from Artists a LEFT JOIN Albums al ON a.ArtistID = al.ArtistID
+   LEFT JOIN Tracks t ON al.AlbumID = t.AlbumID WHERE t.TrackID NOT IN (select pt.TrackID from Playlist_Track pt);
+
+6) SELECT al.AlbumID, al.Title, COUNT(pt.PlaylistID) AS PlaylistCount from Albums al JOIN Tracks t ON al.AlbumID = t.AlbumID JOIN Playlist_Track pt ON t.TrackID = pt.TrackID group by al.AlbumID, al.Title having count(pt.PlaylistID) > 10;
